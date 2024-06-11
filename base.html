@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Text Formatter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXgCWT1R9jZ+3JKQ94Al6iCq3JlOX3kDgYYiB4fiRg/GLZL4DgAl1okx7kM1kMR0ev7D9XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f4f4f9, #d6e5fa);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .buttons button {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .buttons button i {
+            margin-right: 8px;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .find-replace, .lorem-ipsum, .count-word, .random-string {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .find-replace input, .lorem-ipsum input, .count-word input, .random-string input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(50% - 10px);
+        }
+        .find-replace button, .lorem-ipsum button, .count-word button, .random-string button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: #007BFF;
+            color: white;
+        }
+        .find-replace button:hover, .lorem-ipsum button:hover, .count-word button:hover, .random-string button:hover {
+            background-color: #0056b3;
+        }
+        #outputText {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+            margin-top: 20px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Text Formatter</h1>
+        <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+        <div class="buttons">
+            <button onclick="formatText('uppercase')"><i class="fas fa-text-height"></i> Uppercase</button>
+            <button onclick="formatText('lowercase')"><i class="fas fa-text-height"></i> Lowercase</button>
+            <button onclick="formatText('capitalize')"><i class="fas fa-font"></i> Capitalize</button>
+            <button onclick="formatText('titleCase')"><i class="fas fa-heading"></i> Title Case</button>
+            <button onclick="formatText('removeDuplicates')"><i class="fas fa-clone"></i> Remove Duplicates</button>
+            <button onclick="formatText('reverse')"><i class="fas fa-sync-alt"></i> Reverse Text</button>
+            <button onclick="formatText('removeSpaces')"><i class="fas fa-eraser"></i> Remove Spaces</button>
+            <button onclick="formatText('sortLines')"><i class="fas fa-sort-alpha-down"></i> Sort Lines</button>
+            <button onclick="formatText('wordCount')"><i class="fas fa-file-word"></i> Word Count</button>
+            <button onclick="formatText('reverseWords')"><i class="fas fa-exchange-alt"></i> Reverse Words</button>
+            <button onclick="formatText('trimLines')"><i class="fas fa-cut"></i> Trim Lines</button>
+            <button onclick="formatText('lineCount')"><i class="fas fa-align-left"></i> Line Count</button>
+            <button onclick="formatText('charCount')"><i class="fas fa-font"></i> Character Count</button>
+            <button onclick="formatText('vowelCount')"><i class="fas fa-asterisk"></i> Vowel Count</button>
+            <button onclick="formatText('consonantCount')"><i class="fas fa-asterisk"></i> Consonant Count</button>
+            <button onclick="formatText('removeHtmlTags')"><i class="fas fa-code"></i> Remove HTML Tags</button>
+            <button onclick="formatText('removePunctuation')"><i class="fas fa-times"></i> Remove Punctuation</button>
+            <button onclick="formatText('base64Encode')"><i class="fas fa-lock"></i> Base64 Encode</button>
+            <button onclick="formatText('base64Decode')"><i class="fas fa-unlock"></i> Base64 Decode</button>
+            <button onclick="formatText('urlEncode')"><i class="fas fa-link"></i> URL Encode</button>
+            <button onclick="formatText('urlDecode')"><i class="fas fa-unlink"></i> URL Decode</button>
+            <button onclick="formatText('htmlEncode')"><i class="fas fa-code"></i> HTML Encode</button>
+            <button onclick="formatText('htmlDecode')"><i class="fas fa-code"></i> HTML Decode</button>
+            <button onclick="formatText('extractEmails')"><i class="fas fa-envelope"></i> Extract Emails</button>
+        </div>
+        <div class="find-replace">
+            <input type="text" id="findText" placeholder="Find...">
+            <input type="text" id="replaceText" placeholder="Replace with...">
+            <button onclick="formatText('findReplace')"><i class="fas fa-exchange-alt"></i> Find and Replace</button>
+        </div>
+        <div class="count-word">
+            <input type="text" id="countWordText" placeholder="Word to Count...">
+            <button onclick="formatText('countSpecificWord')"><i class="fas fa-search"></i> Count Word</button>
+        </div>
+        <div class="lorem-ipsum">
+            <input type="number" id="loremIpsumParagraphs" placeholder="Number of Paragraphs">
+            <button onclick="generateLoremIpsum()"><i class="fas fa-file-alt"></i> Generate Lorem Ipsum</button>
+        </div>
+        <div class="random-string">
+            <input type="number" id="randomStringLength" placeholder="Length of Random String">
+            <button onclick="generateRandomString()"><i class="fas fa-random"></i> Generate Random String</button>
+        </div>
+        <textarea id="outputText" readonly placeholder="Output will appear here..."></textarea>
+    </div>
+
+    <script>
+        const formatText = (action) => {
+            const input = document.getElementById('inputText').value;
+            let output = '';
+
+            switch(action) {
+                case 'uppercase':
+                    output = input.toUpperCase();
+                    break;
+                case 'lowercase':
+                    output = input.toLowerCase();
+                    break;
+                case 'capitalize':
+                    output = input.replace(/\b\w/g, char => char.toUpperCase());
+                    break;
+                case 'titleCase':
+                    output = input.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+                    break;
+                case 'removeDuplicates':
+                    output = [...new Set(input.split('\n'))].join('\n');
+                    break;
+                case 'reverse':
+                    output = input.split('').reverse().join('');
+                    break;
+                case 'removeSpaces':
+                    output = input.replace(/\s+/g, '');
+                    break;
+                case 'sortLines':
+                    output = input.split('\n').sort().join('\n');
+                    break;
+                case 'wordCount':
+                    output = `Word Count: ${input.trim().split(/\s+/).length}`;
+                    break;
+                case 'reverseWords':
+                    output = input.split(' ').reverse().join(' ');
+                    break;
+                case 'trimLines':
+                    output = input.split('\n').map(line => line.trim()).join('\n');
+                    break;
+                case 'lineCount':
+                    output = `Line Count: ${input.split('\n').length}`;
+                    break;
+                case 'charCount':
+                    output = `Character Count: ${input.length}`;
+                    break;
+                case 'vowelCount':
+                    output = `Vowel Count: ${(input.match(/[aeiou]/gi) || []).length}`;
+                    break;
+               
+                    case 'consonantCount':
+                    output = `Consonant Count: ${(input.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length}`;
+                    break;
+                case 'removeHtmlTags':
+                    output = input.replace(/<\/?[^>]+(>|$)/g, '');
+                    break;
+                case 'removePunctuation':
+                    output = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+                    break;
+                case 'base64Encode':
+                    output = btoa(input);
+                    break;
+                case 'base64Decode':
+                    output = atob(input);
+                    break;
+                case 'urlEncode':
+                    output = encodeURIComponent(input);
+                    break;
+                case 'urlDecode':
+                    output = decodeURIComponent(input);
+                    break;
+                case 'htmlEncode':
+                    output = input.replace(/[\u00A0-\u9999<>\&]/g, (i) => '&#'+i.charCodeAt(0)+';');
+                    break;
+                case 'htmlDecode':
+                    const txt = document.createElement('textarea');
+                    txt.innerHTML = input;
+                    output = txt.value;
+                    break;
+                case 'findReplace':
+                    const findText = document.getElementById('findText').value;
+                    const replaceText = document.getElementById('replaceText').value;
+                    output = input.split(findText).join(replaceText);
+                    break;
+                case 'countSpecificWord':
+                    const countWordText = document.getElementById('countWordText').value;
+                    const regex = new RegExp(`\\b${countWordText}\\b`, 'gi');
+                    const matches = input.match(regex);
+                    output = `The word "${countWordText}" occurs ${matches ? matches.length : 0} times.`;
+                    break;
+                case 'extractEmails':
+                    const emailPattern = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+/gi;
+                    const emails = input.match(emailPattern);
+                    output = emails ? emails.join('\n') : 'No emails found.';
+                    break;
+                default:
+                    output = input;
+            }
+
+            document.getElementById('outputText').value = output;
+        }
+
+        const generateLoremIpsum = () => {
+            const paragraphs = document.getElementById('loremIpsumParagraphs').value;
+            const loremIpsumText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.`;
+
+            let output = '';
+            for (let i = 0; i < paragraphs; i++) {
+                output += `${loremIpsumText}\n\n`;
+            }
+
+            document.getElementById('outputText').value = output.trim();
+        }
+
+        const generateRandomString = () => {
+            const length = document.getElementById('randomStringLength').value;
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('outputText').value = result;
+        }
+    </script>
+</body>
+</html>

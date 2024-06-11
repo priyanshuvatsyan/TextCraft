@@ -1,0 +1,288 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+nav {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+    height: 7vh;
+    display: flex;
+    transition: .4s ease-in;
+}
+
+.title {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.title h1:nth-child(1) {
+    color: red;
+    font-size: 150%;
+}
+
+.title h1 {
+    font-size: 250%;
+}
+
+nav ul {
+    max-width: 50%;
+    display: flex;
+}
+
+nav ul li {
+    transition: .4s ease-in;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-left: 70px;
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+nav ul li:hover {
+    margin-bottom: -10px;
+    font-size: 125%;
+    transition: .1s ease-in;
+    transform: translateY(-10px);
+    border-bottom: 2px solid red;
+}
+
+.download-app {
+    margin-left: auto; /* Ensures the download-app section stays in place */
+}
+
+.download-app i {
+    font-size: 250%;
+}
+
+.download-app p {
+    margin-left: -25px;
+}
+.home{
+  /*   background-color: #333; */
+ 
+    margin: 0px;
+    
+
+   
+}
+.tool-container{
+    /* background-color: #333; */
+    margin-top: 90px;
+    display: flex;
+    flex-wrap: wrap;
+   margin-left: 40px;
+   
+}
+.tc-all{
+    margin-top: 60px;
+    height: 20vh;
+    width: 20vh;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    margin-left: 40px;
+    text-align: center;
+     padding: 30px 20px; 
+     /* border: 2px solid #333; */ 
+     box-shadow:  2px 4px 4px rgba(0.2, 0.2, 0.2, 0.2);
+     padding: 20px;
+     background-color: #fff;
+     
+}
+.bi-alphabet-uppercase{
+    color: red;
+}
+.bi-alphabet{
+    color: rgb(18, 175, 18);
+}
+.bi-capslock-fill{
+color: rgb(0, 126, 126);
+}
+.bi-type-h1{
+    color: orangered;
+}
+.bi-copy{
+    color: orange;
+}
+.bi-arrow-counterclockwise{
+    color: blue;
+}
+.bi-align-end{
+    color: rgb(153, 87, 0);
+}
+.bi-sort-alpha-down{
+    color: rgb(101, 101, 235);
+}
+.bi-9-square-fill{
+    color: chocolate;
+}
+.bi-alipay{
+    color: chartreuse;
+}
+.bi-backspace-fill{
+    color: brown;
+}
+.bi-h-square-fill{
+    color: orange;
+}
+.bi-badge-vo-fill{
+    color: rgb(231, 56, 56);
+}
+.bi-paragraph{
+    color: green;
+}
+.bi-arrow-up-right-square-fill{
+    color: rebeccapurple;
+}
+.bi-braces-asterisk{
+    color: rgb(0, 255, 0);
+}
+.bi-file-earmark-code-fill{
+    color:  rgb(255, 217, 0);
+}
+.bi-envelope-at-fill{
+    color: red;
+}
+.tc-all i{
+    
+
+    font-size: 450%;
+}
+.tc-all p{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    opacity: .6;
+    font-size: 90%;;    
+}
+.tool-container a .tc-all h2{
+    
+    text-decoration: none;
+}
+a {
+   
+    text-decoration: none;
+}
+.tc-all:hover{
+    i{
+       
+
+        transition: .2s linear;           /*Fix here*/
+        font-size: 500%;
+    }
+}
+.about-headings{
+    margin-top: 90px;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.copyright{
+    margin-top: 90px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    margin-bottom: -50px;
+}
+.resp-menu-ul{
+    display: none;
+}
+.bi-three-dots-vertical{
+    display: none;
+}
+@media only screen and (max-width:600px){
+    .main-menu{
+        display: none;
+    }
+    .download-app{
+        display: none;
+    }
+    .resp-menu-ul{
+       
+        text-align: center;
+        flex-direction: column;
+        margin-top: 50px;
+        transition: margin-top 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+        cursor: pointer;
+       /*  margin-top: 25px;
+        margin-left: 70px; */
+        text-decoration: none;
+        list-style: none;
+        
+      /*   background-color: #3333333d;
+        border: 12px solid rgba(255, 255, 255, 0.397); */
+    }
+    .bi-three-dots-vertical{
+        font-size: 150%;
+        position: relative;
+        left: 150px;
+        cursor: pointer;
+        top: 25px;
+       display: inline;
+      
+        /* 
+        margin-left: 150px; */
+    }
+    .resp-menu-ul li{
+        color: black;
+        margin-bottom: 15px;
+    }
+    .resp-menu-ul {
+        display: none;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 50px;
+        cursor: pointer;
+        text-decoration: none;
+        list-style: none;
+        transition: all 0.3s ease; 
+      
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .resp-menu-ul {
+        text-align: center;
+        flex-direction: column;
+        margin-top: 50px;
+        cursor: pointer;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .resp-menu-ul li {
+        opacity: 0; /* Start invisible */
+        animation: fadeInUp 0.5s ease forwards; /* Apply animation */
+        animation-delay: calc(var(--animation-order) * 0.1s); /* Stagger animation */
+        transition: all 0.3s ease; /* Add smooth transition for other changes */
+    }
+    .resp-menu-ul li:hover {
+      
+        font-size: 125%;
+        transition: .2s ease-in;
+        transform: translateY(-10px);
+      
+    } 
+      
+    
+
+    .resp-menu-ul li:hover {
+        transform: scale(1.05); /* Slightly enlarge on hover */
+        background-color: #f0f0f0; /* Change background color on hover */
+    }
+
+    .resp-menu-ul li:nth-child(1) { --animation-order: 1; }
+    .resp-menu-ul li:nth-child(2) { --animation-order: 2; }
+    .resp-menu-ul li:nth-child(3) { --animation-order: 3; }
+    .resp-menu-ul li:nth-child(4) { --animation-order: 4; }
+
+}
